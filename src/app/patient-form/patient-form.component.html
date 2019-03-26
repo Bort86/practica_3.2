@@ -1,0 +1,71 @@
+<form #patientForm = "ngForm" (submit)="patientIntro()" novalidate>
+  <div class="container well">
+    <div class="form-horizontal">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2>New Patient Registration</h2>
+        </div>
+      </div>
+      <br/>
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="formGroup">Name *</label>
+        <div class="col-sm-4">
+          <input class="form-control" type="text" name="patientName"
+          #patientName = "ngModel"
+          [(ngModel)]="patient.name"
+          required />
+        </div>
+        <!--Validation div -->
+
+        <label class="col-sm-2 control-label" for="formGroup">Surname *</label>
+        <div class="col-sm-4">
+          <input class="form-control" type="text" name="patientSurname"
+          #patientSurname = "ngModel"
+          [(ngModel)]="patient.surname"
+          required />
+        </div>
+        <!--Validation div -->
+
+        <label class="col-sm-2 control-label" for="formGroup">Age *</label>
+        <div class="col-sm-4">
+          <input class="form-control" type="text" name="patientAge"
+          #patientAge = "ngModel"
+          [(ngModel)]="patient.age"
+          required />
+        </div>
+        <!--Validation div -->
+
+        <label class="col-sm-2 control-label" for="formGroup">Address *</label>
+        <div class="col-sm-4">
+          <input class="form-control" type="text" name="patientAddress"
+          #patientAddress = "ngModel"
+          [(ngModel)]="patient.address"
+          required />
+        </div>
+        <!--Validation div -->
+
+        <label class="col-sm-2 control-label" for="formGroup">Rol </label>
+        <div class="col-sm-2">
+          <select class="form-control" name="patientRol" #patientRol="ngModel"
+            [(ngModel)]="patient.rol" required>
+            <option *ngFor="let patientRol of patientRols; let i = index"
+            [ngValue]="patientRol">
+            {{patientRol.getRol()}}
+          </option>
+        </select>
+      </div>
+
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="formGroup"></label>
+        <div class="col-sm-4">
+          <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</form>

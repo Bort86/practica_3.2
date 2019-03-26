@@ -1,0 +1,64 @@
+<form #dnaForm = "ngForm" (submit)= "dnaIntro()" novalidate>
+  <div class="container well">
+    <div class="form-horizontal">
+      <div class="row">
+        <div class="col-xs-12">
+          <h2>New Dna Sequence Entry</h2>
+        </div>
+      </div>
+      <br/>
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="formGroup">Identification *</label>
+        <div class="col-sm-4">
+          <input class="form-control" type="number" name="dnaId" #dnaId = "ngModel"
+          [(ngModel)]="dna.id" required appIdValidator/>
+        </div>
+        <div class="has-error alert alert-danger" *ngIf="dnaId.touched && dnaId.invalid">
+
+              <span *ngIf="dnaId.errors.required"> ID can not be empty</span>
+              <span *ngIf="dnaId.errors.IsNotNumber && !dnaId.errors.required">
+                Id must be numbers only</span>
+        </div>
+
+        <label class="col-sm-2 control-label" for="formGroup">DNA sequence: *</label>
+        <div class="col-sm-6">
+          <textarea rows="8" cols="80" name="dnaSequence" #dnaSequence = "ngModel"
+          [(ngModel)] = "dna.sequence" required DnaValidator></textarea>
+        </div>
+
+        <div class="has-error alert alert-danger" *ngIf="dnaSequence.touched && dnaSequence.invalid">
+              <span *ngIf="dnaSequence.errors.required"> DNA sequence can not be empty</span>
+              <span *ngIf="dnaSequence.errors.IsNotCorrect && !dnaSequence.errors.required">
+                DNA sequence must be of values ACTG only</span>
+
+        </div>
+        <br/>
+        <label class="col-sm-2 control-label" for="formGroup">Patient </label>
+        <div class="col-sm-2">
+          <select class="form-control" name="patientdna" #patientdna="ngModel"
+            [(ngModel)]="dna.patient" required>
+              <option *ngFor="let patient of patients; let i = index"
+            [ngValue]="patient">
+            {{patient.getName()}} {{patient.getSurname()}}
+              </option>
+          </select>
+        </div>
+
+        <div class="has-error alert alert-danger" *ngIf="patientdna.touched && patientdna.invalid">
+              <span *ngIf="patientdna.errors.required"> You must choose a patient</span>
+        </div>
+
+      </div>
+      <br/>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="formGroup"></label>
+          <div class="col-sm-4">
+            <button type="submit" class="btn btn-success"
+            [disabled]="dnaForm.invalid">Submit</button>
+          </div>
+        </div>
+    </div>
+
+  </div>
+
+</form>
