@@ -13,6 +13,9 @@ import { RnaFormComponent } from './rna-form/rna-form.component';
 import { ProteinFormComponent } from './protein-form/protein-form.component';
 import { RnaValidatorDirective } from './Directives/rna-validator.directive';
 import { ProteinValidatorDirective } from './Directives/protein-validator.directive';
+//Cookies
+import {CookieService} from 'ngx-cookie-service';
+
 
 const appRoutes: Routes = [
   {path:'patient-form', component:PatientFormComponent},
@@ -42,7 +45,7 @@ const appRoutes: Routes = [
       { enableTracing: false } // <-- debugging purposes only
     )
   ],
-  providers: [],
+  providers: [ CookieService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
